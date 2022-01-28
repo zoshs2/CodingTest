@@ -1,8 +1,36 @@
 from collections import deque
-def solution(tNum, quelist):
-    Max = max(quelist)
-    while Max != tNum:
-        
+
+def solution(target_idx, quelist):
+    tNum = quelist[target_idx]
+    new_list = deque([])
+    for i in range(len(quelist)):
+        if i == target_idx:
+            new_list.append('target')
+        else:
+            new_list.append(quelist[i])
+    
+    quelist = deque(quelist)
+    order = 1
+    while True:
+        Max = max(quelist)
+        length = len(quelist)
+        if Max == tNum:
+            break
+        for _ in range(length):
+            if Max not in quelist:
+                break
+            
+            if quelist[0] == Max:
+                quelist.popleft()
+                new_list.popleft()
+                order += 1
+            else:
+                quelist.append(quelist.popleft())
+                new_list.append(new_list.popleft())
+
+    tIdx = new_list.index('target')
+    answer = order + list(new_list)[:tIdx].count(tNum)
+    return answer
 
 if __name__ == '__main__':
     NumCase = int(input())
@@ -10,36 +38,7 @@ if __name__ == '__main__':
     for _ in range(NumCase):
         numSample, target = map(int, input().split())
         PriorList = list(map(int, input().split()))
-        tNum = PriorList[target]
-        new_list = []
-        for i, num in enumerate(PriorList):
-            if num > tNum:
-                new_list.append('l')
-            elif num < tNum:
-                new_list.append('s')
-            else:
-                if i == target:
-                    new_list.append('t')
-                else:
-                    new_list.append('t1')
-        order = 1
-        new_list = deque(new_list)
-        while 'l' in new_list:
-            if new_list[0] == 'l':
-                new_list.popleft()
-                order += 1
-            else:
-                new_list.append(new_list.popleft())
-        
-        for i in new_list:
-            if 't' == i:
-                Answers.append(str(order))
-                break
-
-            elif 't1' == i:
-                order += 1
-            
-            else: # 's' 인 경우
-                continue
-            
+        sol = solution(target, PriorList)
+        Answers.append(str(sol))
+    
     print("\n".join(Answers))
