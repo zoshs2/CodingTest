@@ -16,15 +16,18 @@ BoolMatrix = []
 for i in range(N):
     BoolMatrix.append([True if ele[0]==ele[1] else False for ele in zip(before[i], after[i])])
 
-q1, r1 = divmod(M, 3) # 3 by 3 행렬을 좌우로 몇번 서칭할 수 있는지 = 몫과 나머지를 더한 값
-new_m = q1 + r1
-q2, r2 = divmod(N, 3) # 상하로 몇번 서칭할 수 있는지
-new_n = q2 + r2
-if q1 == 0 or q2 == 0: # 만약 N이나 M이 3미만이라서 한번도 서칭할 수 없다면, -1 반환
-    sys.exit("-1")
+new_n = N - 2
+new_m = M - 2
+if new_n <= 0 or new_m <= 0:
+    CheckFC = [ele for row in BoolMatrix for ele in row]
+    if sum(CheckFC) != N*M:
+        print(-1)
+        exit(0)
+    else:    
+        print(cnt)
+        exit(0)
 
 cnt = 0
-print(BoolMatrix)
 for i in range(new_n):
     for j in range(new_m):
        if BoolMatrix[i][j] == False:
@@ -35,6 +38,7 @@ for i in range(new_n):
 
 CheckFC = [ele for row in BoolMatrix for ele in row]
 if sum(CheckFC) != N*M:
-    sys.exit("-1")
+    print(-1)
+    exit(0)
 else:    
     print(cnt)
