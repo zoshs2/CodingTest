@@ -5,16 +5,12 @@ S = sys.stdin.readline().strip()
 T = deque(sys.stdin.readline().strip())
 
 revFlag = False
-while True:
-    if len(S) == len(T):
-        break
-
+while len(S)!=len(T):
     if revFlag:
         obj = T.popleft()
         if obj == 'B':
             revFlag = not revFlag
         continue
-
     obj = T.pop()
     if obj == 'B':
         revFlag = not revFlag
