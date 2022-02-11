@@ -3,6 +3,7 @@ from collections import defaultdict
 from collections import deque
 from math import floor
 
+# Brutal Force
 N, L, R = map(int, sys.stdin.readline().strip().split())
 matrix = []
 for _ in range(N):
