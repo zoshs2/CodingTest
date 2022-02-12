@@ -2,7 +2,7 @@ import sys
 
 def HowStep(sign_arr):
     steps = 0
-    
+
     return steps
 
 
@@ -16,10 +16,19 @@ for loc in arr:
     else:
         pos_arr.append(loc)
 
-if N <= M:
-    
-    print(max(arr))
-    exit(0)
+negFlag = False
+posFlag = False
+if len(neg_arr):
+    neg_arr = sorted(neg_arr)
+    negFlag = True
+
+if len(pos_arr):
+    pos_arr = sorted(pos_arr, reverse=True)
+    posFlag = True
+
+if negFlag and posFlag:
+
+if len(neg_arr):
 
 rest = arr[:-M]
 last_step = max(arr[-M:])
