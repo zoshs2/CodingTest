@@ -16,13 +16,15 @@ for _ in range(N):
             answer.append(str(0))
 
     else:
-        for i in range(len(obj)):
-            test = obj[:]
-            test.pop(i)
-            if ''.join(test[::-1]) == ''.join(test):
+        back = obj[::-1]
+        iternum = len(obj)
+        for _ in range(iternum//2):
+            back.pop(0)
+            obj.pop(0)
+            if ''.join(back) == ''.join(obj):
                 answer.append(str(1))
                 break
         else:
-            answer.append(str(2))            
-
+            answer.append(str(2))
+            
 print('\n'.join(answer))
