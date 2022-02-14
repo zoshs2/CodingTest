@@ -19,7 +19,7 @@ for _ in range(N):
         back = obj[::-1]
         iternum = len(obj)
         for _ in range(iternum//2):
-            back.pop(0)
+            back.pop(0) 
             obj.pop(0)
             if ''.join(back) == ''.join(obj):
                 answer.append(str(1))
@@ -27,4 +27,6 @@ for _ in range(N):
         else:
             answer.append(str(2))
             
-print('\n'.join(answer))
+
+            
+print('\n'.join(answer)) # 답
