@@ -27,6 +27,4 @@ for _ in range(N):
         else:
             answer.append(str(2))
             
-
-            
 print('\n'.join(answer)) # 답
