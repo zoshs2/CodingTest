@@ -28,3 +28,4 @@ for _ in range(N):
             answer.append(str(2))
             
 print('\n'.join(answer)) # 답
+print("Answer")
